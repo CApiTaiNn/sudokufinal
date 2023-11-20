@@ -1,14 +1,33 @@
+/**
+*
+* \brief Jeu de sudoku
+*
+* \author Morgant
+*
+* \version 1final
+*
+* \date 20 novembre 2023
+*
+* Ce programme permet de jouer au jeu de sudoku 
+*
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
+/**
+ * \def TAILLE qui vaut 9, correspond à la taille de la grille de jeu 
+ */
 #define TAILLE 9
 
-// déclaration du type tGrille
-
+/**
+ * \typedef tGrille
+ * 
+ * \brief création de la grille de jeu de taille 9x9
+ */
 typedef int tGrille[TAILLE][TAILLE];
 
-// promesses de fonctions/procédures
 
 void chargerGrille(tGrille g);
 void afficherGrille(tGrille g);
@@ -17,9 +36,13 @@ bool possible(int lig, int col, int val, tGrille g);
 int verifGrille(tGrille g);
 
 
+/*****************************************************
+* PROGRAMME PRINCIPAL *
+*****************************************************/
+
 int main(){
-    //déclaration des variables
-    int numLigne,numColonne,valeur;
+    // déclaration des variables
+    int numLigne,numColonne,valeur; 
     int compt = 0;
     tGrille grille1;
     
@@ -44,7 +67,7 @@ int main(){
         {
             printf("Impossible, la case n'est pas libre.\n");
         }else{
-            printf("Valeur à insérer ?\n");
+            printf("Valeur a inserer ?\n");
             saisir(&valeur);
             if (possible(numLigne,numColonne,valeur,grille1))
             {
@@ -59,9 +82,13 @@ int main(){
 
 
 
-
-// chargement de la grille
-
+/**
+*
+* \fn void chargerGrille(tGrille g)
+*
+* \brief procédure qui charge la grille de jeu 
+*
+*/
 void chargerGrille(tGrille g){
     char nomFichier[30];
     FILE * f;
@@ -76,7 +103,14 @@ void chargerGrille(tGrille g){
     fclose(f);
 }
 
-// affiche de la grille
+/**
+ * 
+ * \fn void afficherGrille( tGrille g)
+ *
+ * @brief affiche la grille de jeu
+ * 
+ * @param g 
+ */
 
 void afficherGrille(tGrille g) {
     // affichage des numeros de colonne espacé tout les 3 chiffres
@@ -144,7 +178,13 @@ void afficherGrille(tGrille g) {
 }
 
 
-// saisie des données
+/**
+ * \fn saisir(int*S) 
+ *
+ * @brief fonction qui fait la saisie des doonnées, indice de case et valeur
+ * 
+ * @param S 
+ */
 
 void saisir(int *S){
     char ch[10];
@@ -164,7 +204,18 @@ void saisir(int *S){
     } while (*S < 1 || *S > TAILLE);    
 }
 
-// vérification des coordonnées et de la valeur
+/**
+ * \fn  possible(int lig, int col, int val, tGrille g)
+ * 
+ * @brief vérifie si les coordonnées et la valeurs sont valide
+ * doublons sur une ligne, colonne, dans le carre 3x3
+ * 
+ * @param lig 
+ * @param col 
+ * @param val 
+ * @param g 
+ * @return true si les données sont valide, false sinon 
+ */
 bool possible(int lig, int col, int val, tGrille g){
     bool rep = true;
     int debut_lig = (lig/3)*3;
@@ -186,20 +237,31 @@ bool possible(int lig, int col, int val, tGrille g){
             printf("il y a déjà cette valeur sur la colonne\n");
         }
     }
+    // vérifie les doublons dans le carre 3x3
     for (int i = debut_lig; i < debut_lig+3 ; i++)
     {
         for (int j = debut_col; j < debut_col+3; j++)
         {
             if (g[i][j] == val)
             {
-                printf("valeur deja dans le carre de 3x3\n");
                 rep = false;
+                printf("valeur deja dans le carre de 3x3\n");
             }    
         } 
     }
     return rep;  
 }
 
+
+/**
+ * \fn verifGrille(tGrille g)
+ * 
+ * @brief compte le nombre de nombre dans la grille de depart
+ * le compteur partira de ce nombre pour atteindre 81 a la fin
+ * 
+ * @param g 
+ * @return int 
+ */
 int verifGrille(tGrille g){
     int compt = 0;
     for (int i = 0; i < TAILLE; i++)
