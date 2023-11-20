@@ -167,6 +167,9 @@ void saisir(int *S){
 // vérification des coordonnées et de la valeur
 bool possible(int lig, int col, int val, tGrille g){
     bool rep = true;
+    int debut_lig = (lig/3)*3;
+    int debut_col = (col/3)*3;
+
     for (int i = 0; i < TAILLE; i++)// verifie les doublons dans la ligne
     {
         if (g[lig][i] == val)
@@ -182,6 +185,17 @@ bool possible(int lig, int col, int val, tGrille g){
             rep = false;
             printf("il y a déjà cette valeur sur la colonne\n");
         }
+    }
+    for (int i = debut_lig; i < debut_lig+3 ; i++)
+    {
+        for (int j = debut_col; j < debut_col+3; j++)
+        {
+            if (g[i][j] == val)
+            {
+                printf("valeur deja dans le carre de 3x3\n");
+                rep = false;
+            }    
+        } 
     }
     return rep;  
 }
@@ -200,4 +214,3 @@ int verifGrille(tGrille g){
     } 
     return compt;
 }
-
