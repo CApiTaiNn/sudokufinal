@@ -111,7 +111,6 @@ void chargerGrille(tGrille g){
  * 
  * @param g 
  */
-
 void afficherGrille(tGrille g) {
     // affichage des numeros de colonne espacé tout les 3 chiffres
     printf("    ");
@@ -178,6 +177,7 @@ void afficherGrille(tGrille g) {
 }
 
 
+
 /**
  * \fn saisir(int*S) 
  *
@@ -185,7 +185,6 @@ void afficherGrille(tGrille g) {
  * 
  * @param S 
  */
-
 void saisir(int *S){
     char ch[10];
     int x;
