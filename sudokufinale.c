@@ -28,7 +28,9 @@
  */
 typedef int tGrille[TAILLE][TAILLE];
 
-
+/******************************************************
+ *      FONCTION ET PROCÉDURE UTILITAIRES             *
+*******************************************************/
 void chargerGrille(tGrille g);
 void afficherGrille(tGrille g);
 void saisir(int *S);
