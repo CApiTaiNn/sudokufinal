@@ -64,7 +64,7 @@ int main(){
         numLigne--;
         numColonne--;
 
-
+        //boucle et condition pour insérer une valeur
         if (grille1[numLigne][numColonne] !=0)
         {
             printf("Impossible, la case n'est pas libre.\n");
