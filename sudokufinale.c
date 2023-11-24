@@ -67,7 +67,7 @@ int main(){
         {
             printf("Impossible, la case n'est pas libre.\n");
         }else{
-            printf("Valeur a inserer ?\n");
+            printf("Valeur a insérer ?\n");
             saisir(&valeur);
             if (possible(numLigne,numColonne,valeur,grille1))
             {
