@@ -23,7 +23,6 @@
 
 /**
  * \typedef tGrille
- * 
  * \brief création de la grille de jeu de taille 9x9
  */
 typedef int tGrille[TAILLE][TAILLE];
@@ -38,9 +37,9 @@ bool possible(int lig, int col, int val, tGrille g);
 int verifGrille(tGrille g);
 
 
-/*****************************************************
-* PROGRAMME PRINCIPAL *
-*****************************************************/
+/******************************
+* PROGRAMME PRINCIPAL         *
+*******************************/
 
 int main(){
     // déclaration des variables
@@ -69,15 +68,16 @@ int main(){
         {
             printf("Impossible, la case n'est pas libre.\n");
         }else{
-            printf("Valeur a insérer ?\n");
+            printf("Valeur à insérer ?\n");
             saisir(&valeur);
-            if (possible(numLigne,numColonne,valeur,grille1))
+            if (possible(numLigne,numColonne,valeur,grille1)== true)
             {
                 grille1[numLigne][numColonne] = valeur;
                 compt += 1;
             }          
         }
-    }  
+    }
+    afficherGrille(grille1);  
     printf("Grille pleine fin de partie\n");
     return EXIT_SUCCESS;
 }
@@ -149,13 +149,13 @@ void afficherGrille(tGrille g) {
             {
                 printf(" %d ", g[i][j]);
             } 
-            if ((j+1) % 3 == 0){ // si la division de j est = 0 alors | est afficher 
+            if ((j+1) % 3 == 0){ // si la division de j+1 par 3 est = 0 alors | est afficher 
                 printf("|");
             }
         }
         printf("\n");
 
-        // separation avec + et ---- entre lefor (int j = 0; j < NB_COLONNES; j++) {s bloc de 3 lignes
+        // separation avec + et ---- entre les bloc de 3 lignes
         if ((i+1) % 3 == 0 && i+1 !=TAILLE) 
         {
             printf("   ");
@@ -167,6 +167,7 @@ void afficherGrille(tGrille g) {
             printf("+\n");
         } 
     }
+
     // affichage du dernier séparateur avec + et ----
     printf("   ");
     for (int i = 0; i < 3; i++)
@@ -175,7 +176,6 @@ void afficherGrille(tGrille g) {
         printf("---------");        
     }
     printf("+\n");
-
 }
 
 
@@ -239,14 +239,14 @@ bool possible(int lig, int col, int val, tGrille g){
         }
     }
     // vérifie les doublons dans le carre 3x3
-    for (int i = debut_lig; i < debut_lig+3 ; i++)
+    for(int i = debut_lig; i < debut_lig + 3 ; i++)
     {
-        for (int j = debut_col; j < debut_col+3; j++)
+        for (int j = debut_col; j < debut_col + 3; j++)
         {
             if (g[i][j] == val)
             {
                 rep = false;
-                printf("valeur deja dans le carre de 3x3\n");
+                printf("valeur déjà dans le carré de 3x3\n");
             }    
         } 
     }
