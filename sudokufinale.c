@@ -47,8 +47,7 @@ int main(){
     int compt = 0;
     tGrille grille1;
     
-
-    chargerGrille(grille1);
+    chargerGrille(grille1);// chargement de la grille
 
     //boucle principale
     while (compt < (TAILLE*TAILLE))
